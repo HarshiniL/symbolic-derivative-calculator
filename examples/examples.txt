@@ -1,1 +1,91 @@
+{- -----------------------------------------------------------------
+ - Test cases for eval, diff, and prettyPrint
+ - -----------------------------------------------------------------
+Function: eval
+Test Case Number: 1
+Input: eval (Sum X (Coef 3)) 7
+Expected Output: 10.0
+Actual Output: 10.0
+Rationale: Tests evaluation of Sum with correct substitution
 
+Function: eval
+Test Case Number: 2
+Input: eval (Prod (Power X 3) (Coef 2)) 2
+Expected Output: 16.0
+Actual Output: 16.0
+Rationale: Tests Prod and Power together
+
+Function:eval
+Test Case Number: 3
+Input: eval X 7
+Expected Output: 7.0
+Actual Output: 7.0
+Rationale: Tests simplest expression
+
+Function: eval
+Test Case Number: 4
+Input: eval (Quot (Exp (Sum X (Coef 1))) (Abs X)) (-2)
+Expected Output: 0.18393972058572117
+Actual Output: 0.18393972058572117
+Rationale: Tests Exp, Sum, Quot, Abs and negative v value
+
+ - -----------------------------------------------------------------
+
+Function: diff
+Test Case Number: 1
+Input: diff X
+Expected Output: Coef 1.0
+Actual Output: Coef 1.0
+Rationale: Basic variable rule
+
+Function: diff
+Test Case Number: 2
+Input: diff (Sum X (Coef 4))
+Expected Output: Sum (Coef 1.0) (Coef 0.0)
+Actual Output: Sum (Coef 1.0) (Coef 0.0)
+Rationale: Tests sum and constant rule
+
+Function: diff
+Test Case Number:3
+Input: diff (Prod X X)
+Expected Output: Sum (Prod (Coef 1.0) X) (Prod (Coef 1.0) X)
+Actual Output: Sum (Prod (Coef 1.0) X) (Prod (Coef 1.0) X)
+Rationale: Tests product rule
+
+Function: diff
+Test Case Number: 4
+Input: diff (Prod (Power X 3) (Log X))
+Expected Output: Sum (Prod (Prod (Coef 3.0) (Prod (Power X 2) (Coef 1.0))) (Log X)) (Prod (Quot (Coef 1.0) X) (Power X 3))
+Actual Output: Sum (Prod (Prod (Coef 3.0) (Prod (Power X 2) (Coef 1.0))) (Log X)) (Prod (Quot (Coef 1.0) X) (Power X 3))
+Rationale: Tests power, product, and log rule together
+
+ - -----------------------------------------------------------------
+
+Function: prettyPrint
+Test Case Number: 1
+Input: prettyPrint X
+Expected Output: "X"
+Actual Output: "X"
+Rationale: Tests simplest formatting
+
+Function: prettyPrint
+Test Case Number: 2
+Input: prettyPrint (Coef 7)
+Expected Output: "(7)"
+Actual Output: "(7)"
+Rationale: Tests formatting for numeric values
+
+Function: prettyPrint
+Test Case Number: 3
+Input: prettyPrint (Sum X (Prod (Coef 2) X))
+Expected Output: "(X + ((2) * X))"
+Actual Output: "(X + ((2) * X))"
+Rationale: Tests Sum and Prod
+
+Function: prettyPrint
+Test Case Number: 4
+Input: prettyPrint (Prod (Exp X) (Power (Abs (Log X)) 2))
+Expected Output: "(exp (X) * (abs (log (X)) ^^ (2)))"
+Actual Output: "(exp (X) * (abs (log (X)) ^^ (2)))"
+Rationale: Tests Prod, Exp, Log, Power altogether
+-}
