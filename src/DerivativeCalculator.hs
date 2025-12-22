@@ -34,7 +34,9 @@ data MathExpr a =
  - eval
  - -----------------------------------------------------------------
  - Description:
- -    TODO add comments
+ -    Evaluates an expression of MathExpr at a given value. Parameters
+      are e (the expression) and v (the value to substitute for X)
+      This function returns the numeric value of the expression.
  -}
 eval :: (Floating a, Eq a) => MathExpr a -> a -> a
 eval X v = v
@@ -51,7 +53,7 @@ eval (Log e) v = log (eval e v)
  - instance Num a => Num (MathExpr a)
  - -----------------------------------------------------------------
  - Description:
- -    TODO add comments
+ -    Defines basic operations for MathExpr, like addition and multiplication.
  -}
 instance Num a => Num (MathExpr a) where
   x + y         = Sum x y
@@ -65,7 +67,7 @@ instance Num a => Num (MathExpr a) where
  - instance Fractional a => Fractional (MathExpr a)
  - -----------------------------------------------------------------
  - Description:
- -    TODO add comments
+ -   Defines fractional operations for MathExpr.
  -}
 instance Fractional a => Fractional (MathExpr a) where
   e1 / e2        = Quot e1 e2
@@ -75,7 +77,9 @@ instance Fractional a => Fractional (MathExpr a) where
  - instance Floating a => Floating (MathExpr a)
  - -----------------------------------------------------------------
  - Description:
- -    TODO add comments
+ -     Defines floating point operations for MathExpr, like the value
+       of pi. However, most trigonometric and hyperbolic functions will
+       raise an error.
  -}
 instance Floating a => Floating (MathExpr a) where
   pi      = Coef pi
@@ -99,7 +103,8 @@ instance Floating a => Floating (MathExpr a) where
  - diff
  - -----------------------------------------------------------------
  - Description:
- -    TODO add comments
+ -    If e is an expression of type (MathExpr a), diff e is the
+      result of symbolically differentiating e using the differential rules.
  -}
 diff :: (Floating a, Eq a) => MathExpr a -> MathExpr a
 diff X = 1
@@ -119,7 +124,8 @@ diff (Log e) = Quot (diff e) e
  - pretty
  - -----------------------------------------------------------------
  - Description:
-
+ -     If e is an expression of type (MathExpr a), prettyPrint e
+       will create a String representation of e.
  -}
 prettyPrint :: (Show a) => MathExpr a -> String
 prettyPrint X = "X"
