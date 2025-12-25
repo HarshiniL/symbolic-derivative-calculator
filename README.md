@@ -12,3 +12,7 @@ Features
 What I learned
 - Using and manipulating data types
 - Creating instances of data types
+
+My extensions
+- Expanded the features by including trigonometric, square root, and hyperbolic functions
+- Created a main file that takes input and output
